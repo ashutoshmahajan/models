@@ -1,16 +1,17 @@
 from pyomo.environ import *
-import glob
 import os
 import importlib
 import sys
 
 
 ## SET THESE PARAMETERS BEFORE EVERY RUN
+
+model_file = "q1.py"
 solverpath = "/home/amahajan/minotaur/build/bin/mglob"
 solver_options = {'--bnb_time_limit': 600}
 echo_out = False
-model_file = "q1.py"
 
+## End of parameters
 
 print("Solving", model_file)
 
