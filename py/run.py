@@ -6,7 +6,6 @@ import sys
 
 ## SET THESE PARAMETERS BEFORE EVERY RUN
 
-solverpath = "/home/amahajan/minotaur/build/bin/mglob"
 solver_options = {'--bnb_time_limit': 60, '--log_level':3}
 echo_out = False
 me = "run.py:"
@@ -14,18 +13,19 @@ me = "run.py:"
 ## End of parameters
 
 def print_usage():
-	print("usage: python run.py model.py")
+	print("usage: python run.py model.py /path/to/solver")
 	print()
 	print("edit run.py to change the solver or its parameters")
 
 
 ## Start the main code
 
-if (len(sys.argv)<2):
+if (len(sys.argv)<3):
 	print_usage()
 	sys.exit(1)
 
 model_file = sys.argv[1]
+solverpath = sys.argv[2]
 print(me, "Solving", model_file)
 
 infile = os.path.splitext(os.path.basename(model_file))[0]
