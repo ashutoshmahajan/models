@@ -8,7 +8,7 @@ import sys
 
 model_file = "q1.py"
 solverpath = "/home/amahajan/minotaur/build/bin/mglob"
-solver_options = {'--bnb_time_limit': 600}
+solver_options = {'--bnb_time_limit': 60}
 echo_out = False
 
 ## End of parameters
