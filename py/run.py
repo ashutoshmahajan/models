@@ -7,7 +7,7 @@ import sys
 ## SET THESE PARAMETERS BEFORE EVERY RUN
 
 solver_options = {'--bnb_time_limit': 60, '--log_level':3}
-echo_out = False
+echo_out = True
 me = "run.py:"
 
 ## End of parameters
@@ -46,23 +46,12 @@ instance_name = os.path.splitext(os.path.basename(model_file))[0]
 
 try:
 	result = solver.solve(model.m, tee=echo_out)
-	with open(output_file, "w") as f:
-		f.write("**************************************************************")
-		f.write(f"\nResults for {model_file} : ")
-
-		if result.solver.status == SolverStatus.ok:
-			f.write("Solver terminated successfully.")
-		elif result.solver.status == SolverStatus.aborted:
-			f.write("Solver reached the time limit.")
-		else:
-			f.write("Solver did not terminate successfully")
-
-		f.write("\nSolver status: {}".format(result.solver.status))
-		f.write("\nBest solution value obtained before the time limit: {}".format(model.m.obj()))
-		f.write("\nSolver termination condition: {}".format(result.solver.termination_condition))
-		f.write("\nSolver time: {}".format(result.solver.time))
-		f.write("\nBest bound: {}".format(result.problem.lower_bound))
-		f.close()
+	print(f"\nResults for {model_file} : ")
+	print("Solver termination status:",result.solver.status)
+	print("Solver termination condition: {}".format(result.solver.termination_condition))
+	print("Best solution value: {}".format(model.m.obj()))
+	print("Best bound: {}".format(result.problem.lower_bound))
+	print("Solver time: {}".format(result.solver.time))
 except Exception as e:
 	print(me, "Error solving", instance_name, ". Could not load results.")
 
